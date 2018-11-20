@@ -1,9 +1,9 @@
 <?php
-namespace Omnipay\Ameriabank\Message;
+namespace Omnipay\Bizmail\Message;
 use Omnipay\Common\Message\AbstractResponse;
 /**
  * Class CompletePurchaseResponse
- * @package Omnipay\Ameriabank\Message
+ * @package Omnipay\Bizmail\Message
  */
 class CompletePurchaseResponse extends AbstractResponse
 {
@@ -14,7 +14,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->data->GetPaymentFieldsResult->respcode == '00';
+        return $this->data->status === 40;
     }
 
     /**
@@ -23,7 +23,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getTransactionId()
     {
-        return $this->data->GetPaymentFieldsResult->orderid ?? '';
+        return $this->data->eid ?? '';
     }
 
 
@@ -33,7 +33,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getTransactionReference()
     {
-        return $this->data->GetPaymentFieldsResult->rrn ?? '';
+        return $this->data->eid ?? '';
     }
 
 }

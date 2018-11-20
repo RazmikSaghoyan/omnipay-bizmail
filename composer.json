@@ -3,6 +3,7 @@
     "description": "Bussines mail.ru gateway for Omnipay payment processing library",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/RazmikSaghoyan/omnipay-bizmail",
     "authors": [
         {
             "name": "Razmik Saghoyan",

@@ -3,6 +3,7 @@
 namespace Omnipay\Bizmail\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Yandex\Message\CompletePurchaseRequest;
 
 /**
  * Class PurchaseRequest
@@ -157,34 +158,22 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-//        $payment = $this->createPaymentRequest($data);
-//        if (empty($payment->GetPaymentIDResult->PaymentID) || $payment->GetPaymentIDResult->Respmessage != 'OK') {
-//            return $payment->GetPaymentIDResult;
-//        } else {
-//
-//            $data['PaymentId'] = $payment->GetPaymentIDResult->PaymentID;
-//        }
-//
+
+        dd('HASAV TEX', $data);
+
+        $response = $this->myFunct($data);
+
+
+
+
+        return $this->response = new CompletePurchaseResponse($this, $data);
 //        return $this->response = new PurchaseResponse($this, $data);
     }
 
-    /**
-     * Create Payment Request Ameria Bank
-     * @return mixed
-     * @throws \Omnipay\Common\Exception\InvalidRequestException
-     */
-    protected function createPaymentRequest($data)
-    {
-//        $args['paymentfields'] = $data;
-//
-//        $client = new \SoapClient($this->getPaymentUrl(), [
-//            'soap_version'    => SOAP_1_1,
-//            'exceptions'      => true,
-//            'trace'           => 1,
-//            'wsdl_local_copy' => true
-//        ]);
-//
-//        return $webService = $client->GetPaymentID($args);
-    }
 
+    protected function myFunct($data)
+    {
+
+
+    }
 }

@@ -4,8 +4,8 @@ namespace Omnipay\Bizmail;
 
 use Omnipay\Common\Http\ClientInterface;
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Ameriabank\Message\CompletePurchaseRequest;
-use Omnipay\Ameriabank\Message\PurchaseRequest;
+use Omnipay\Bizmail\Message\CompletePurchaseRequest;
+use Omnipay\Bizmail\Message\PurchaseRequest;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 
@@ -149,6 +149,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $options = array())
     {
+        dd('aaa');
         return $this->createRequest(PurchaseRequest::class, $options);
     }
 
