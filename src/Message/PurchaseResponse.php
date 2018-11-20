@@ -50,25 +50,25 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function createPaymentRequest()
     {
-        $client = new \SoapClient($this->getPaymentUrl(), [
-            'soap_version'    => SOAP_1_1,
-            'exceptions'      => true,
-            'trace'           => 1,
-            'wsdl_local_copy' => true
-        ]);
-
-        $args['paymentfields'] = array(
-            'Opaque'        => $this->data['Opaque'],
-            'backURL'       => $this->data['backURL'],
-            'OrderID'       => $this->data['OrderID'],
-            'Username'      => $this->data['Username'],
-            'Password'      => $this->data['Password'],
-            'ClientID'      => $this->data['ClientID'],
-            'Description'   => $this->data['Description'],
-            'Currency'      => $this->data['Currency'],
-            'PaymentAmount' => $this->data['PaymentAmount'],
-        );
-        dd($args);
-        return $webService = $client->GetPaymentID($args);
+//        $client = new \SoapClient($this->getPaymentUrl(), [
+//            'soap_version'    => SOAP_1_1,
+//            'exceptions'      => true,
+//            'trace'           => 1,
+//            'wsdl_local_copy' => true
+//        ]);
+//
+//        $args['paymentfields'] = array(
+//            'Opaque'        => $this->data['Opaque'],
+//            'backURL'       => $this->data['backURL'],
+//            'OrderID'       => $this->data['OrderID'],
+//            'Username'      => $this->data['Username'],
+//            'Password'      => $this->data['Password'],
+//            'ClientID'      => $this->data['ClientID'],
+//            'Description'   => $this->data['Description'],
+//            'Currency'      => $this->data['Currency'],
+//            'PaymentAmount' => $this->data['PaymentAmount'],
+//        );
+//        dd($args);
+//        return $webService = $client->GetPaymentID($args);
     }
 }

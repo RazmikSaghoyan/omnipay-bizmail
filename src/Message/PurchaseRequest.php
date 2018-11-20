@@ -157,15 +157,15 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $payment = $this->createPaymentRequest($data);
-        if (empty($payment->GetPaymentIDResult->PaymentID) || $payment->GetPaymentIDResult->Respmessage != 'OK') {
-            return $payment->GetPaymentIDResult;
-        } else {
-
-            $data['PaymentId'] = $payment->GetPaymentIDResult->PaymentID;
-        }
-
-        return $this->response = new PurchaseResponse($this, $data);
+//        $payment = $this->createPaymentRequest($data);
+//        if (empty($payment->GetPaymentIDResult->PaymentID) || $payment->GetPaymentIDResult->Respmessage != 'OK') {
+//            return $payment->GetPaymentIDResult;
+//        } else {
+//
+//            $data['PaymentId'] = $payment->GetPaymentIDResult->PaymentID;
+//        }
+//
+//        return $this->response = new PurchaseResponse($this, $data);
     }
 
     /**
@@ -175,16 +175,16 @@ class PurchaseRequest extends AbstractRequest
      */
     protected function createPaymentRequest($data)
     {
-        $args['paymentfields'] = $data;
-
-        $client = new \SoapClient($this->getPaymentUrl(), [
-            'soap_version'    => SOAP_1_1,
-            'exceptions'      => true,
-            'trace'           => 1,
-            'wsdl_local_copy' => true
-        ]);
-
-        return $webService = $client->GetPaymentID($args);
+//        $args['paymentfields'] = $data;
+//
+//        $client = new \SoapClient($this->getPaymentUrl(), [
+//            'soap_version'    => SOAP_1_1,
+//            'exceptions'      => true,
+//            'trace'           => 1,
+//            'wsdl_local_copy' => true
+//        ]);
+//
+//        return $webService = $client->GetPaymentID($args);
     }
 
 }

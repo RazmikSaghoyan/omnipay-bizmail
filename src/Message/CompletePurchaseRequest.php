@@ -80,18 +80,18 @@ class CompletePurchaseRequest extends PurchaseRequest
      */
     protected function validateRequest(ParameterBag $requestData)
     {
-        $data = $requestData->all();
-
-        $data['success'] = false;
-        // Check for required request data
-        if ($requestData->has('Username') &&
-            $requestData->has('ClientID') &&
-            $requestData->has('Password') &&
-            $requestData->has('OrderID') &&
-            $requestData->has('PaymentAmount')) {
-            $data['success'] = true;
-        }
-        return $data;
+//        $data = $requestData->all();
+//
+//        $data['success'] = false;
+//        // Check for required request data
+//        if ($requestData->has('Username') &&
+//            $requestData->has('ClientID') &&
+//            $requestData->has('Password') &&
+//            $requestData->has('OrderID') &&
+//            $requestData->has('PaymentAmount')) {
+//            $data['success'] = true;
+//        }
+//        return $data;
     }
 
 
@@ -101,21 +101,21 @@ class CompletePurchaseRequest extends PurchaseRequest
      */
     protected function getPaymentFieldsResult($data)
     {
-        $client = new \SoapClient($this->getPaymentUrl(), [
-            'soap_version'    => SOAP_1_1,
-            'exceptions'      => true,
-            'trace'           => 1,
-            'wsdl_local_copy' => true
-        ]);
-
-        $args['paymentfields'] = array(
-            'OrderID'       => $data['orderID'],
-            'Username'      => $this->getUsername(),
-            'Password'      => $this->getPassword(),
-            'ClientID'      => $this->getClientId(),
-            'PaymentAmount' => $this->getAmount(),
-        );
-        
-        return $client->GetPaymentFields($args);
+//        $client = new \SoapClient($this->getPaymentUrl(), [
+//            'soap_version'    => SOAP_1_1,
+//            'exceptions'      => true,
+//            'trace'           => 1,
+//            'wsdl_local_copy' => true
+//        ]);
+//
+//        $args['paymentfields'] = array(
+//            'OrderID'       => $data['orderID'],
+//            'Username'      => $this->getUsername(),
+//            'Password'      => $this->getPassword(),
+//            'ClientID'      => $this->getClientId(),
+//            'PaymentAmount' => $this->getAmount(),
+//        );
+//
+//        return $client->GetPaymentFields($args);
     }
 }
