@@ -1,8 +1,10 @@
 <?php
+
 namespace Omnipay\Bizmail\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
+
 /**
  * Class PurchaseResponse
  * @package Omnipay\Bizmail\Message
@@ -11,20 +13,20 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 {
 
     /**
-     * Set successful to false, as transaction is not completed yet
+     * Indicates whether transaction was successful
      * @return bool
      */
     public function isSuccessful()
     {
-        return true;
+        return $this->data['status'] === 40;
     }
 
     /**
-     * Mark purchase as redirect type
-     * @return bool
+     * Get TransactionId
+     * @return string
      */
-    public function isRedirect()
+    public function getTransactionId()
     {
-        return false;
+        return $this->data->eid ?? '';
     }
 }

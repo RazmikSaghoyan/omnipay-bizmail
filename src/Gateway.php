@@ -4,7 +4,6 @@ namespace Omnipay\Bizmail;
 
 use Omnipay\Common\Http\ClientInterface;
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Bizmail\Message\CompletePurchaseRequest;
 use Omnipay\Bizmail\Message\PurchaseRequest;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
@@ -21,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
  * @method \Omnipay\Common\Message\RequestInterface createCard(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface updateCard(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface deleteCard(array $options = array())
+ * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
  */
 class Gateway extends AbstractGateway
 {
@@ -46,16 +46,25 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Get default parameters
-     * @return array|\Illuminate\Config\Repository|mixed
+     * Sets the request biz Project Id.
+     *
+     * @param string $value
+     *
+     * @return $this
      */
-    public function getDefaultParameters()
+    public function setBizProjectId($value)
     {
-        return [
-            'bizProjectId' => ''
-        ];
+        return $this->setParameter('bizProjectId', $value);
     }
 
+    /**
+     * Get the request biz Project Id.
+     * @return $this
+     */
+    public function getBizProjectId()
+    {
+        return $this->getParameter('bizProjectId');
+    }
     /**
      * Sets the request billing type.
      *
@@ -149,20 +158,6 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $options = array())
     {
-        dd('aaa');
         return $this->createRequest(PurchaseRequest::class, $options);
     }
-
-    /**
-     * Complete purchase
-     *
-     * @param array $options
-     *
-     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Common\Message\RequestInterface
-     */
-    public function completePurchase(array $options = array())
-    {
-        return $this->createRequest(CompletePurchaseRequest::class, $options);
-    }
-
 }

@@ -2,8 +2,8 @@
 
 namespace Omnipay\Bizmail\Message;
 
+use GuzzleHttp\Client;
 use Omnipay\Common\Message\AbstractRequest;
-use Omnipay\Yandex\Message\CompletePurchaseRequest;
 
 /**
  * Class PurchaseRequest
@@ -132,7 +132,6 @@ class PurchaseRequest extends AbstractRequest
         return $this->paymentUrl.$this->getBizProjectId().'/transactions/';
     }
 
-
     /**
      * Prepare data to send
      * @return array|mixed
@@ -145,7 +144,7 @@ class PurchaseRequest extends AbstractRequest
             'type'        => $this->getType(),
             'kind'        => $this->getKind(),
             'amount'      => $this->getAmount(),
-            'description' => $this->getDescription()
+            'description' => $this->getDescription() ?? ''
         ];
     }
 
@@ -158,22 +157,48 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
+        dd($data);
+        $response = $this->createPaymentRequest($data);
 
-        dd('HASAV TEX', $data);
-
-        $response = $this->myFunct($data);
-
-
-
-
-        return $this->response = new CompletePurchaseResponse($this, $data);
-//        return $this->response = new PurchaseResponse($this, $data);
+        return $this->response = new PurchaseResponse($this, $response);
     }
 
-
-    protected function myFunct($data)
+    /**
+     * @param $data
+     *
+     * @return array|mixed
+     */
+    protected function createPaymentRequest($data)
     {
+        $client = new Client([
+            'headers' => [
+                'API-KEY' => 'MRG-BIZ-PARTNER-Key'
+            ]
+        ]);
+        $response = $client->post($this->getPaymentUrl(), [
+            'form_params' => [
+                'type'        => $data['type'],
+                'kind'        => $data['kind'],
+                'amount'      => $data['amount'],
+                'description' => $data['description'],
+            ],
+        ]);
 
+        if ($response->getStatusCode() === 200) {
+            return json_decode((string) $response->getBody(), true);
+        }
 
+        return [
+//            "eid"          => "abcdef12-324a-46b6-9713f846a25085ad",
+//            "status"       => 40,
+//            "status_human" => "Успешно",
+//            "type"         => "onetime",
+//            "kind"         => "debit",
+//            "balance"      => null,
+//            "amount"       => "108.0000",
+//            "description"  => "Оплата проведена успешно",
+//            "created_at"   => "2018-06-21T12:25:19.723044Z",
+//            "updated_at"   => "2018-06-21T12:25=19.781132Z"
+        ];
     }
 }
