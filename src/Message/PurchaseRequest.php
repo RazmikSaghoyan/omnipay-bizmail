@@ -19,6 +19,27 @@ class PurchaseRequest extends AbstractRequest
     protected $paymentUrl = 'https://testbiz3.mail.ru/platform/domains/';
 
     /**
+     * Sets the request biz Api Key.
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function setBizApiKey($value)
+    {
+        return $this->setParameter('bizApiKey', $value);
+    }
+
+    /**
+     * Get the request biz Api Key.
+     * @return $this
+     */
+    public function getBizApiKey()
+    {
+        return $this->getParameter('bizApiKey');
+    }
+
+    /**
      * Sets the request biz Project Id.
      *
      * @param string $value
@@ -172,7 +193,7 @@ class PurchaseRequest extends AbstractRequest
     {
         $client = new Client([
             'headers' => [
-                'API-KEY' => 'MRG-BIZ-PARTNER-Key'
+                'MRG-BIZ-PARTNER-Key' => $this->getBizApiKey()
             ]
         ]);
         $response = $client->post($this->getPaymentUrl(), [
