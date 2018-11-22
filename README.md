@@ -3,7 +3,7 @@
 **Bussines mail.ru gateway for Omnipay payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.5+. This package implements iDram support for Omnipay.
+processing library for PHP 5.5+. This package implements Bizmail support for Omnipay.
 
 ## Installation
 
@@ -68,5 +68,5 @@ If you want to keep up to date with release anouncements, discuss ideas for the 
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/ptuchik/omnipay-yandex/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/RazmikSaghoyan/omnipay-bizmail/issues),
 or better yet, fork the library and submit a pull request.
