@@ -16,7 +16,7 @@ class PurchaseRequest extends AbstractRequest
      * Gateway payment Url
      * @var string
      */
-    protected $paymentUrl = 'https://testbiz3.mail.ru/platform/domains/';
+    protected $paymentUrl = 'https://biz.mail.ru/api/v1/platform/domains/';
 
     /**
      * Sets the request biz Api Key.
@@ -178,7 +178,6 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        dd($data);
         $response = $this->createPaymentRequest($data);
 
         return $this->response = new PurchaseResponse($this, $response);
@@ -205,21 +204,6 @@ class PurchaseRequest extends AbstractRequest
             ],
         ]);
 
-        if ($response->getStatusCode() === 200) {
-            return json_decode((string) $response->getBody(), true);
-        }
-
-        return [
-//            "eid"          => "abcdef12-324a-46b6-9713f846a25085ad",
-//            "status"       => 40,
-//            "status_human" => "Успешно",
-//            "type"         => "onetime",
-//            "kind"         => "debit",
-//            "balance"      => null,
-//            "amount"       => "108.0000",
-//            "description"  => "Оплата проведена успешно",
-//            "created_at"   => "2018-06-21T12:25:19.723044Z",
-//            "updated_at"   => "2018-06-21T12:25=19.781132Z"
-        ];
+        return json_decode((string) $response->getBody(), true);
     }
 }
