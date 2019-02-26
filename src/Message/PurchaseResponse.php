@@ -18,7 +18,43 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function isSuccessful()
     {
-        return $this->data['status'] === 40;
+        return ($this->data['status'] ?? 0) == 40;
+    }
+
+    /**
+     * Indicates whether transaction was redirect
+     * @return bool
+     */
+    public function isRedirect()
+    {
+        return ($this->data['status'] ?? 0) == 20;
+    }
+
+    /**
+     * Gets the redirect target url.
+     * @return string
+     */
+    public function getRedirectUrl()
+    {
+        return 'https://biz.mail.ru/domains/goto/billing/pay/';
+    }
+
+    /**
+     * Response Message
+     * @return null|string A response message from the payment gateway
+     */
+    public function getMessage()
+    {
+        return $this->data['status_human'] ?? '';
+    }
+
+    /**
+     * Get the response data.
+     * @return mixed
+     */
+    public function getData()
+    {
+        return ['transaction' => $this->data];
     }
 
     /**
@@ -27,6 +63,6 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function getTransactionId()
     {
-        return $this->data->eid ?? '';
+        return $this->data['eid'] ?? '';
     }
 }
